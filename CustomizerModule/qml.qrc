@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>ShipData.qml</file>
+        <file>CustomizeShipScreen.qml</file>
+        <file>SelectionPointer.qml</file>
+    </qresource>
+</RCC>
