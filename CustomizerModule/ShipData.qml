@@ -1,11 +1,77 @@
+pragma Singleton
+
 import QtQuick 2.0
 
-//ToDo: Implement as Singleton
 Item {
+    id: model
 
-    property var model: ["N", "N", "N", "N", "N",
-                                "N", "N", "B", "N", "N",
-                                "N", "N", "N", "N", "N",
-                                "N", "N", "N", "N", "N"]
+    property alias model: _model
 
+    ListModel {
+        id: _model
+
+        ListElement {
+            name: "N"
+        }
+        ListElement {
+            name: "N"
+        }
+        ListElement {
+            name: "N"
+        }
+        ListElement {
+            name: "N"
+        }
+        ListElement {
+            name: "N"
+        }
+
+        ListElement {
+            name: "N"
+        }
+        ListElement {
+            name: "B"
+        }
+        ListElement {
+            name: "B"
+        }
+        ListElement {
+            name: "B"
+        }
+        ListElement {
+            name: "N"
+        }
+
+        ListElement {
+            name: "N"
+        }
+        ListElement {
+            name: "N"
+        }
+        ListElement {
+            name: "N"
+        }
+        ListElement {
+            name: "N"
+        }
+        ListElement {
+            name: "N"
+        }
+
+        ListElement {
+            name: "N"
+        }
+        ListElement {
+            name: "N"
+        }
+        ListElement {
+            name: "N"
+        }
+        ListElement {
+            name: "N"
+        }
+        ListElement {
+            name: "N"
+        }
+    }
 }
