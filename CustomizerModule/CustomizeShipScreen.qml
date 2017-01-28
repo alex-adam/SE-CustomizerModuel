@@ -4,6 +4,7 @@ import QtQuick.Window 2.2
 import "."
 
 Grid {
+    id: _grid
     rows: 4; columns: 5
 
     Repeater {
@@ -35,10 +36,10 @@ Grid {
                         name = "B";
                     }
                     else if (name == "B") {
-                        name = "N";
+                        name = "S";
                     }
                     else {
-                        console.log("ALEXDEB: unknown while changing " + name);
+                        name = "N";
                     }
                 }
             }
@@ -49,17 +50,36 @@ Grid {
                 visible: false
             }
 
+            Timer {
+                running: true; repeat: true;
+                interval: 1000
+                onTriggered: {
+                    if (ShipData.model.get(index).name === "N") {
+                        _leftBorder.visible = true;
+                        _rightBorder.visible = true;
+                    }
+                    else {
+                        _rightBorder.visible = ShipData.model.get(index + 1).name === "N"
+                        _leftBorder.visible = ShipData.model.get(index - 1).name === "N"
+                    }
+                    if (ShipData.model.get(index).name === "S") {
+                        _topBorder.visible = !ShipData.model.get(index - _grid.columns).name === "S"
+                        _bottomBorder.visible = !ShipData.model.get(index + _grid.columns).name === "S";
+                    }
+                    else {
+                        _topBorder.visible = true;
+                        _bottomBorder.visible = true;
+                    }
+                }
+            }
+
             Rectangle {
                 id: _leftBorder
 
                 anchors.left: parent.left
                 width: 5
                 height: parent.height
-                color: "red"
-
-                visible: ShipData.model.get(index - 1).name === "N"
-
-
+                color: "red"   
             }
 
             Rectangle {
@@ -69,18 +89,6 @@ Grid {
                 width: 5
                 height: parent.height
                 color: "blue"
-
-                //TODO: Does not get updated
-                visible: ShipData.model.get(index + 1).name === "N"
-
-                //This works
-                Timer {
-                    running: true; repeat: true;
-                    interval: 1000
-                    onTriggered: {
-                        _rightBorder.visible = ShipData.model.get(index + 1).name === "N"
-                    }
-                }
             }
 
             Rectangle {
@@ -99,11 +107,7 @@ Grid {
                 width: parent.width
                 height: 5
                 color: "black"
-
-                //visible:
             }
-
-
         }
     }
 }
